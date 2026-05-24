@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -14,11 +15,23 @@ import '../screens/lists/list_detail_screen.dart';
 import '../screens/journal/journal_screen.dart';
 import '../screens/journal/journal_entry_screen.dart';
 
+class _AuthRefresh extends ChangeNotifier {
+  _AuthRefresh(Stream<dynamic> stream) {
+    _sub = stream.listen((_) => notifyListeners());
+  }
+  late final StreamSubscription<dynamic> _sub;
+  @override
+  void dispose() {
+    _sub.cancel();
+    super.dispose();
+  }
+}
+
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/',
     debugLogDiagnostics: false,
-    refreshListenable: GoRouterRefreshStream(
+    refreshListenable: _AuthRefresh(
       Supabase.instance.client.auth.onAuthStateChange,
     ),
     redirect: (context, state) {

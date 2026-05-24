@@ -30,7 +30,7 @@ class JournalNotifier extends StateNotifier<AsyncValue<List<JournalEntry>>> {
           .order('created_at', ascending: false);
 
       state = AsyncValue.data(
-        (data as List<dynamic>).map(JournalEntry.fromJson).toList(),
+        (data as List<dynamic>).map((e) => JournalEntry.fromJson(e as Map<String, dynamic>)).toList(),
       );
     } catch (e, st) {
       state = AsyncValue.error(e, st);
