@@ -1,0 +1,13 @@
+# Netlify build settings for Family Hub.
+# When you connect this repo in Netlify, set the base directory to "web".
+
+[build]
+  base = "web"
+  command = "npm run build"
+  publish = "dist"
+
+# SPA fallback — every route serves index.html.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
