@@ -1,0 +1,41 @@
+name: family_hub
+description: A personal family organization app — calendar, lists, and journal.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Backend
+  supabase_flutter: ^2.5.0
+
+  # State management & navigation
+  flutter_riverpod: ^2.5.1
+  go_router: ^13.2.0
+
+  # Calendar
+  table_calendar: ^3.1.0
+
+  # Photos
+  image_picker: ^1.1.2
+  cached_network_image: ^3.3.1
+
+  # Utilities
+  intl: ^0.19.0
+  uuid: ^4.4.0
+  flutter_slidable: ^3.1.0
+  timeago: ^3.6.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
